@@ -1,16 +1,13 @@
 # Remember to adjust your student ID in meta.xml
 import numpy as np
-import pickle
 import random
+import copy
 import gym
 from gym import spaces
 import matplotlib.pyplot as plt
-import copy
-import random
-import math
 
 class Game2048Env(gym.Env):
-    def __init__(self):
+    def __init__(self, board=None, score=None):
         super(Game2048Env, self).__init__()
 
         self.size = 4  # 4x4 2048 board
