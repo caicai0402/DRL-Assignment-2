@@ -1,5 +1,6 @@
 # Remember to adjust your student ID in meta.xml
 from Game2048Env import Game2048Env
+import random
 
 def get_action(state, score):
     # env = Game2048Env()
