@@ -20,7 +20,7 @@ TEXT_COLOR = {
 }
 
 class Game2048Env(gym.Env):
-    def __init__(self, board=None, score=None):
+    def __init__(self, board=None, score=0):
         super(Game2048Env, self).__init__()
 
         self.size = 4  # 4x4 2048 board
@@ -28,7 +28,7 @@ class Game2048Env(gym.Env):
             self.reset()
         else:
             self.board = board
-            self.score = 0 if score is None else score
+            self.score = score
 
         # Action space: 0: up, 1: down, 2: left, 3: right
         self.action_space = spaces.Discrete(4)
