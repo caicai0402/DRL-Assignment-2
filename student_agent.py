@@ -9,4 +9,5 @@ def get_action(state, score):
     for _ in range(uct_mcts.iterations):
         uct_mcts.run_simulation(root)
     best_action, visit_distribution = uct_mcts.best_action_distribution(root)
+    print('.')
     return best_action
