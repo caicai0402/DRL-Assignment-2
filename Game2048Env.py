@@ -24,16 +24,17 @@ class Game2048Env(gym.Env):
         super(Game2048Env, self).__init__()
 
         self.size = 4  # 4x4 2048 board
-        self.board = np.zeros((self.size, self.size), dtype=int)
-        self.score = 0
+        if board is None:
+            self.reset()
+        else:
+            self.board = board
+            self.score = 0 if score is None else score
 
         # Action space: 0: up, 1: down, 2: left, 3: right
         self.action_space = spaces.Discrete(4)
         self.actions = ["up", "down", "left", "right"]
 
         self.last_move_valid = True  # Record if the last move was valid
-
-        self.reset()
 
     def reset(self):
         """Reset the environment"""
