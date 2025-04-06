@@ -27,7 +27,7 @@ class Game2048Env(gym.Env):
         if board is None:
             self.reset()
         else:
-            self.board = board
+            self.board = board.copy()
             self.score = score
 
         # Action space: 0: up, 1: down, 2: left, 3: right
@@ -42,7 +42,7 @@ class Game2048Env(gym.Env):
         self.score = 0
         self.add_random_tile()
         self.add_random_tile()
-        return self.board
+        return self.board.copy()
 
     def add_random_tile(self):
         """Add a random tile (2 or 4) to an empty cell"""
@@ -142,7 +142,7 @@ class Game2048Env(gym.Env):
 
         return True
 
-    def step(self, action):
+    def step(self, action, add_random_tile=True):
         """Execute one action"""
         assert self.action_space.contains(action), "Invalid action"
 
@@ -159,12 +159,12 @@ class Game2048Env(gym.Env):
 
         self.last_move_valid = moved  # Record if the move was valid
 
-        if moved:
+        if moved and add_random_tile:
             self.add_random_tile()
 
         done = self.is_game_over()
 
-        return self.board, self.score, done, {}
+        return self.board.copy(), self.score, done, {}
 
     def render(self, mode="human", action=None):
         """
