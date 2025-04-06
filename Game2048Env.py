@@ -1,4 +1,3 @@
-# Remember to adjust your student ID in meta.xml
 import numpy as np
 import random
 import copy
